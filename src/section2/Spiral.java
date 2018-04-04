@@ -7,6 +7,7 @@ public class Spiral {
 	public static void main(String[] args) {
 		// 1. Create a new Robot
 		Robot dumbGuy = new Robot();
+		
 		// 5. Set your robot's pen down
 		dumbGuy.penDown();
 		// 3. Set the robot to go at max speed (10)
