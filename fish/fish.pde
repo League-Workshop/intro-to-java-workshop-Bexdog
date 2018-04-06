@@ -5,29 +5,38 @@ void setup() {
 }
 int randomNumber = (int) random(width); 
 void draw() {
-
-  fill(#F74802); 
-  noStroke();
-  ellipse(randomNumber, foodY, 10, 10);
-  foodY=foodY+1;
-  if (foodY>=750) {
-    foodY=10;
-    randomNumber = (int) random(width-200);
-  }
-  void checkCatch(int xPos, int yPos){
-                         if(x > mouseX && x < mouseX){
-                                    if(y > mouseY && y < mouseY){
-                                      score++;
-                                    }
-                          }
-                         else if (y > height && score > 0){
-                                    score--;
-                          }
-println("Your score is now: " + score);
-}
-}
-void drawFish() {
   background(141, 233, 237);
+  if (score>=20) {
+    textSize(50);
+
+    text("YOU LOSE, JK, YOU WIN!", 75, 375);
+  } else {  
+    drawFish();
+    fill(#F74802); 
+    noStroke();
+    ellipse(randomNumber, foodY, 10, 10);
+    foodY=foodY+1;
+    if (foodY>=750) {
+      foodY=10;
+      randomNumber = (int) random(width-200);
+    }
+    checkCatch(randomNumber, foodY);
+  }
+}
+void checkCatch(int x, int y) {
+  if (x > mouseX && x < mouseX+70) {
+    if (y > mouseY-17 && y < mouseY+30) {
+      score++;
+      foodY=10;
+      randomNumber = (int) random(width-200);
+    }
+  } else if (y > height && score > 0) {
+    score--;
+  }
+  println("Your score is now: " + score);
+}
+
+void drawFish() {
   noStroke();
   fill(255, 255, 255);
   ellipse(mouseX-17, mouseY-17, 20, 20); //back side eye
